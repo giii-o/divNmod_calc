@@ -71,9 +71,10 @@ function InputPanel() {
 
   function addKey(key) {
     const isOperator = key === 'div' || key === 'mod';
+    const hasResult = result !== '' && !error;
 
     setExpression((current) => {
-      const currentValue = result && !error ? result : current;
+      const currentValue = hasResult ? result : current;
 
       if (isOperator) {
         const trimmedValue = currentValue.trimEnd();
@@ -85,7 +86,7 @@ function InputPanel() {
         return `${trimmedValue} ${key} `;
       }
 
-      return `${result && !error ? '' : currentValue}${key}`;
+      return `${hasResult ? '' : currentValue}${key}`;
     });
     setResult('');
     setError('');
@@ -127,6 +128,10 @@ function InputPanel() {
 
   useEffect(() => {
     function handleKeyboardInput(event) {
+      if (event.target instanceof Element && event.target.closest('input, textarea, select, [contenteditable="true"]')) {
+        return;
+      }
+
       if (event.key === 'Enter' && event.target instanceof Element && event.target.closest('button')) {
         return;
       }
