@@ -31,3 +31,7 @@ The Git history currently contains only an initial commit, so no established com
 ## Security & Configuration Tips
 
 Do not commit credentials or local environment files. `.gitignore` already excludes `.env` files, dependencies, build output, and common local artifacts; keep secrets in local environment configuration.
+
+## Operational Skills & Workflows
+When executing specific tasks, refer to the dedicated skill guides located in `.codex/skills/`
+- **UI Implementation:** Follow [./.codex/skills/design.md](./.codex/skills/design.md)
